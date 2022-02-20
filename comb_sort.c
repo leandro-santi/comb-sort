@@ -13,19 +13,24 @@ swap(int i, int j, int *a[])
 void
 sort(int n, int *a[])
 {
-	int i, gap = n, swapped = 1;
+	int i,
+		gap = n, /* Gap inicial do tamanho do array */
+		swapped = 1; /* Variavel para verificar se houve movimentacao */
 
+	/* Enquanto o gap for valido ou tenham ocorrido trocas... */
 	while (gap > 1 || swapped) {
-		swapped = 0;
-		gap = gap * 10 / 13;
-		/* Comb11 variation speed hack:
+		swapped = 0; /* Reseta a variavel de validacao */
+		gap = gap * 10 / 13; /* Reduz o gap */
+
+		/* Variacao Comb11...
 		 * gap = gap == 9 || gap == 10 ? 11 : gap;
 		 */
 
+		/* Compara e troca os valores dentro do espaco do gap */
 		for (i = 0; i + gap < n; i++) {
 			if ((*a)[i] > (*a)[i + gap]) {
-				swap(i, i + gap, a);
-				swapped = 1;
+				swap(i, i + gap, a); /* Troca os valores */
+				swapped = 1; /* Registra movimentacao */
 			}
 		}
 	}
